@@ -2,16 +2,6 @@
 #define ll long long int
 using namespace std;
 
-struct monster{
-    int hp;
-    int power;
-    int position;
-};
-
-bool comp(monster m1, monster m2){
-    return m1.power < m2.power;
-}
-
 int main(){
 
     ios_base::sync_with_stdio(false);
@@ -21,7 +11,7 @@ int main(){
     while(t--) {
         int n;
         cin>>n;
-        int a[n];
+        ll a[n];
         for(int i=0;i<n;i++){
             cin>>a[i];
         }
@@ -29,34 +19,24 @@ int main(){
         for(int i=0; i<n; i++){
             cin>>b[i];
         }
-
-        vector<monster> v;
-        for(int i=0; i<n; i++){
-            monster m;
-            m.hp = a[i];
-            m.power = b[i];
-            m.position = i;
-            v.push_back(m);
-        }
-        sort(v.begin(), v.end(), comp);
         ll ans = 0;
-        for(int i=0 ; i<n ; i++){
-            if(a[v[i].position]!=0){
-                ans += a[v[i].position];
-                cout<<ans<<endl;
-                a[v[i].position] = 0;
-
-                for(int j=0 ; j<n ; j++) cout<<a[j]<<" "<<b[j]<<endl;
-                
-                if(v[i].position !=0 ){
-                    a[v[i].position - 1] += b[v[i].position];
-                }if(v[i].position != (n-1)){
-                    a[v[i].position + 1] += b[v[i].position];
-                }
+        for(int i=0; i<n; i++){
+            if(i==n-1){
+                ans += a[i];
+                break;
+            }
+            if(a[i]+(a[i+1]+b[i])<=a[i+1]+(b[i+1]+a[i])){
+                ans += a[i];
+                a[i+1] += b[i];
+            }else{
+                ans += a[i+1];
+                a[i] += b[i+1];
+                swap(a[i], a[i+1]);
+                swap(b[i], b[i+1]);
             }
         }
+
         cout<<ans<<endl;
     }
-//not complete
     return 0;
 }
