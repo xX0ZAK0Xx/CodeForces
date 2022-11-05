@@ -10,22 +10,23 @@ int main(){
     while(t--) {
         ll n; cin>>n;
         
-        if(n==1){
-            cout<<"1\n1 2\n";
-        }else {
-            int ans = 1;
-            if(n>2) ans = n-1;
-            cout<<ans<<"\n2 6\n";
-            if(n>2){
-                ll x = 4, y = 9;
-                for(ll i=1 ; i<ans ; i++){
-                    cout<<x<<" "<<y<<"\n";
-                    x++;
-                    y+=3;
-                }
+        if(n&1){
+            cout<<(n/2)+1<<"\n";
+            int i=1, j=3*n;
+            for(int k=0 ; k<n/2 ; k++){
+                cout<<i<<" "<<j<<"\n";
+                i+=3; j-=3;
+            }
+            cout<<2<<" "<<j<<"\n";
+        }else{
+            cout<<n/2<<"\n";
+            int i=1, j=3*n;
+            for(int k=0 ; k<n/2 ; k++){
+                cout<<i<<" "<<j<<"\n";
+                i+=3; j-=3;
             }
         }
     }
 
     return 0;
-}//wrong at pretest 2
+}
