@@ -14,27 +14,19 @@ int main(){
 
     nfs test{
         ll l, r, x, a, b; cin >> l >> r >> x >> a >> b;
-        ll ans = 0;
-        ll pos = a;
-        bool flag = true;
-        while(pos != b){
-            if(pos+x <= b){
-                pos = pos+x;
-                ans ++;
-            }
-            else if(b+x <= r){// 6-> 12 -> 7
-                pos = b;
-                ans+=2;
-            }
-            else if(b-x >= l){//8 -> 2 -> 7
-                pos = b;
-                ans+=2;
-            }
-            else{
-                ans = -1; break;
-            }
+        if(a==b){
+            print(0)
+        }else if(a<b){
+            if(b-a >= x) print(1)
+            else if(r-b >= x || a-l >= x) print(2)
+            else if(r-a >= x && b-l >= x) print(3)
+            else print(-1)
+        }else{
+            if(a-b >= x) print(1)
+            else if(r-a >= x || b-l >= x) print(2)
+            else if(r-b >= x && a-l >= x) print(3)
+            else print(-1)
         }
-        print(ans)
     }
 
     return 0;
