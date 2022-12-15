@@ -11,17 +11,29 @@
 #define colfill(arr, row, val) for(ll xx=0 ; xx<(row) ; xx++){ arr[xx][0]=(val);}
 using namespace std;
 bool solve(string s){
-    bool flag = false;
-    int ctr = 0;
-    for(int i=0 ; i<s.length()-1 ; i++){
-        if(s[i]==s[i+1]){
-            ctr++;
-        }
-        if(ctr>=7){
+    // bool flag = false;
+    // int ctr = 0;
+    // for(int i=0 ; i<s.length()-1 ; i++){
+    //     if(s[i]==s[i+1]){
+    //         ctr++;
+    //     }else{
+    //         ctr=0;
+    //     }
+    //     if(ctr>=7){
+    //         return true;
+    //     }
+    // }
+    // return false;
+    size_t found = s.find("0000000");
+    if(found!=string::npos){
+        return true;
+    }else{
+        found = s.find("1111111");
+        if(found!=string::npos){
             return true;
         }
+        return false;
     }
-    return false;
 }
 int main(){
 
